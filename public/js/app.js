@@ -1,6 +1,6 @@
 var Timer = {
-  minutesLeft: 0,
-  secondsLeft: 5,
+  minutesLeft: 25,
+  secondsLeft: 0,
   isOnBreak: false,
   numberOfBreaks: 0,
   init: function(){
@@ -66,17 +66,20 @@ var Timer = {
     }
   },
   resetWorkTime: function(){
-    this.minutesLeft = 00;
-    this.secondsLeft = 05;
+    this.minutesLeft = 25;
+    this.secondsLeft = 00;
+    alert('Break timer finished. To start work timer, press Start');
   },
   resetBreakTime: function(){
     if(this.numberOfBreaks < 3){
       this.minutesLeft = 5;
+      alert('Work timer finished. To start 5 minute break, press Start');
     } else {
       this.minutesLeft = 15;
       this.numberOfBreaks = 0;
+      alert('Final work timer finished. To start 15 minute break, press Start');
     }
-    this.secondsLeft = 0;
+    this.secondsLeft = 00;
   },
 };
 Timer.init();
