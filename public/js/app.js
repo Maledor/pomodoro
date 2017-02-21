@@ -1,6 +1,6 @@
 var Timer = {
-  minutesLeft: 25,
-  secondsLeft: 0,
+  minutesLeft: 0,
+  secondsLeft: 5,
   isOnBreak: false,
   numberOfBreaks: 0,
   init: function(){
@@ -12,6 +12,8 @@ var Timer = {
     this.minutes = document.querySelector('#minutes');
     this.seconds = document.querySelector('#seconds');
     this.startButton = document.querySelector('#start');
+    this.notifySound = document.querySelector('#notifySound');
+
   },
   render: function(){
     this.minutes.textContent = this.pad(this.minutesLeft);
@@ -30,6 +32,7 @@ var Timer = {
   },
   tick: function(){
     if(this.secondsLeft === 0 && this.minutesLeft === 0){
+      this.playAudio();
       clearInterval(this.timer);
       this.timer = !this.timer; // dereference
       if(this.isOnBreak){
@@ -66,20 +69,24 @@ var Timer = {
     }
   },
   resetWorkTime: function(){
-    this.minutesLeft = 25;
-    this.secondsLeft = 00;
+    this.minutesLeft = 00;
+    this.secondsLeft = 05;
     alert('Break timer finished. To start work timer, press Start');
   },
   resetBreakTime: function(){
     if(this.numberOfBreaks < 3){
-      this.minutesLeft = 5;
+      this.minutesLeft = 0;
       alert('Work timer finished. To start 5 minute break, press Start');
     } else {
-      this.minutesLeft = 15;
+      this.minutesLeft = 0;
       this.numberOfBreaks = 0;
       alert('Final work timer finished. To start 15 minute break, press Start');
     }
-    this.secondsLeft = 00;
+    this.secondsLeft = 05;
+  },
+  playAudio: function(){
+    console.log('hey');
+    this.notifySound.play();
   },
 };
 Timer.init();
